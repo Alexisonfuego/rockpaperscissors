@@ -28,7 +28,7 @@ let playGame = function() {
     //Keep track of scores/rounds
     let humanScore = 0
     let computerScore = 0
-    let roundsPlayed = 0
+    let roundsPlayed = 1
     
 
     //Play one round
@@ -42,11 +42,9 @@ let playGame = function() {
         ) {
             console.log("You win! " + humanChoice + " beats " + computerChoice);
             humanScore++
-            roundsPlayed++
         } else {
             console.log("You lose! " + computerChoice + " beats " + humanChoice);
             computerScore++
-            roundsPlayed++
         }
         
         console.log("Rounds played: " + roundsPlayed);
@@ -56,6 +54,7 @@ let playGame = function() {
     //Loop for 5 rounds + keep track of round count
     for (let i = 0; i < 5; i++) {
     playRound(getHumanChoice(), getComputerChoice());
+    roundsPlayed++
     }
         
     //Print final score
