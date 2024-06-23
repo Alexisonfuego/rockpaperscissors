@@ -33,28 +33,32 @@ let playGame = function() {
 
     //Play one round
     let playRound = function(humanChoice, computerChoice) {
-        if (humanChoice === computerChoice) {
-            console.log("It's a tie! Go again");
-        } else if (
-            (humanChoice === "rock" && computerChoice === "scissors") ||
-            (humanChoice === "paper" && computerChoice === "rock") ||
-            (humanChoice === "scissors" && computerChoice === "paper")
-        ) {
-            console.log("You win! " + humanChoice + " beats " + computerChoice);
-            humanScore++
-        } else {
-            console.log("You lose! " + computerChoice + " beats " + humanChoice);
-            computerScore++
+        if (humanChoice != null) {
+            if (humanChoice === computerChoice) {
+                console.log("It's a tie! Go again");
+            } else if (
+                (humanChoice === "rock" && computerChoice === "scissors") ||
+                (humanChoice === "paper" && computerChoice === "rock") ||
+                (humanChoice === "scissors" && computerChoice === "paper")
+            ) {
+                console.log("You win! " + humanChoice + " beats " + computerChoice);
+                humanScore++
+            } else {
+                console.log("You lose! " + computerChoice + " beats " + humanChoice);
+                computerScore++
+            }
+            
+            console.log("Rounds played: " + roundsPlayed);
+            console.log("Current score: Human " + humanScore + ", Computer " + computerScore);
         }
-        
-        console.log("Rounds played: " + roundsPlayed);
-        console.log("Current score: Human " + humanScore + ", Computer " + computerScore);
-    }
+    }   
 
     //Loop for 5 rounds + keep track of round count
-    for (let i = 0; i < 5; i++) {
-    playRound(getHumanChoice(), getComputerChoice());
-    roundsPlayed++
+    for (let i = 0; i < 5;) {
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
+    if(humanChoice != null) { roundsPlayed++; i++ }
     }
         
     //Print final score
