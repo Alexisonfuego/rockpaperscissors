@@ -28,7 +28,7 @@ let playGame = function() {
     //Keep track of scores/rounds
     let humanScore = 0
     let computerScore = 0
-    let roundsPlayed = 1
+    let roundsPlayed = 0
     
 
     //Play one round
@@ -47,32 +47,50 @@ let playGame = function() {
                 console.log("You lose! " + computerChoice + " beats " + humanChoice);
                 computerScore++
             }
+
+            { roundsPlayed++ }
             
             console.log("Rounds played: " + roundsPlayed);
             console.log("Current score: Human " + humanScore + ", Computer " + computerScore);
         }
+
+        //Print final score
+        if (humanScore === 5 || computerScore === 5) {
+            console.log("Final Score:");
+            console.log("Human: " + humanScore);
+            console.log("Computer: " + computerScore);
+
+            if (humanScore > computerScore) {
+                console.log("Congratulations!");
+            } else if (humanScore < computerScore) {
+                console.log("Better luck next time!");
+            } else {
+                console.log("Nothing between yous! Reload and try again?");
+            }
+
+            buttons.forEach(button => button.disabled = true);
+        }
     }   
 
     //Loop for 5 rounds + keep track of round count
-    for (let i = 0; i < 5;) {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-    if(humanChoice != null) { roundsPlayed++; i++ }
-    }
-        
-    //Print final score
-    console.log("Final Score:");
-    console.log("Human: " + humanScore);
-    console.log("Computer: " + computerScore);
+    // for (let i = 0; i < 5;) {
+    //     let humanChoice = getHumanChoice();
+    //     let computerChoice = getComputerChoice();
+    // playRound(humanChoice, computerChoice);
+    // if(humanChoice != null) { roundsPlayed++; i++ }
+    // }
 
-    if (humanScore > computerScore) {
-        console.log("Congratulations!");
-    } else if (humanScore < computerScore) {
-        console.log("Better luck next time!");
-    } else {
-        console.log("Nothing between yous! Reload and try again?");
-    }
+    let buttons = document.querySelectorAll('button')
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            let humanChoice = e.target.textContent.toLowerCase();
+            let computerChoice = getComputerChoice();
+            playRound(humanChoice, computerChoice);
+            
+            })
+        })
+  
 }
-
+    
 playGame();
