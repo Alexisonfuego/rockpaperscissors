@@ -1,3 +1,11 @@
+let buttons = document.querySelectorAll('button')
+let roundCounter = document.querySelector('.roundCounter')
+let hScore = document.querySelector('.humanScore')
+let cScore = document.querySelector('.computerScore')
+let result = document.querySelector('.result')
+let outcome = document.querySelector('.finalOutcome')
+const p = document.createElement('p')
+
 //Request user choice
 let getHumanChoice = function () {
     let humanChoice = prompt("Time to throw them up", "Rock, Paper, or Scissors?").toLowerCase();
